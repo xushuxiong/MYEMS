@@ -16,6 +16,6 @@
         密码：<input type="text" name="emp_pwd" value="<%=emp.Emp_pwd %>" /><br />
         是否为管理员：<input type="text" name="emp_is_manager" value="<%=emp.Emp_is_manager%>"/><br />
     </form>
-    <p style="color:red"><%=msg%></p> 
+    <p style="color:red"><%=msg%></p>
 </body>
 </html>

@@ -1,0 +1,1 @@
+﻿SELECT * FROM department ORDER BY dept_id OFFSET  0 ROWS FETCH NEXT  3  ROWS only

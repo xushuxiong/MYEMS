@@ -97,5 +97,14 @@ namespace MYEMS.service.impl
         {
             return employeeDao.getTotalCount();
         }
+
+        public List<Employee> selectEmployeeByMobile(string emp_mobile)
+        {
+            return employeeDao.selectEmployeeByMobile(emp_mobile);
+        }
+        public List<Employee> selectEmployeeByManager(bool emp_manager)
+        {
+            return employeeDao.selectEmployeeByManager(emp_manager);
+        }
     }
 }

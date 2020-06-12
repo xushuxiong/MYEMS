@@ -153,7 +153,15 @@
     <Content Include="view\assets\js\vendor\bs-custom-file-input.min.js" />
     <Content Include="view\assets\js\vendor\clipboard.min.js" />
     <Content Include="view\assets\js\vendor\jquery.slim.min.js" />
+    <Content Include="view\DepartmentAdd.aspx" />
+    <Content Include="view\DepartmentIndex.aspx" />
+    <Content Include="view\DepartmentQuery.aspx" />
+    <Content Include="view\DepartmentQueryInfo.aspx" />
+    <Content Include="view\DepartmentUpdate.aspx" />
+    <Content Include="view\EmployeeAdd.aspx" />
     <Content Include="view\EmployeeIndex.aspx" />
+    <Content Include="view\EmployeeQuery.aspx" />
+    <Content Include="view\EmployeeQueryInfo.aspx" />
     <Content Include="view\EmployeeUpdate.aspx" />
     <Content Include="view\index1.aspx" />
     <Content Include="view\login.aspx" />
@@ -171,8 +179,10 @@
     </Compile>
     <Compile Include="dao\DepartmentDao.cs" />
     <Compile Include="dao\EmployeeDao.cs" />
+    <Compile Include="dao\EquipmentDao.cs" />
     <Compile Include="entity\Department.cs" />
     <Compile Include="entity\Employee.cs" />
+    <Compile Include="entity\Equipment.cs" />
     <Compile Include="entity\PageHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -180,8 +190,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="service\DepartmentService.cs" />
     <Compile Include="service\EmployeeService.cs" />
+    <Compile Include="service\EquipmentService.cs" />
     <Compile Include="service\impl\DepartmentServiceImpl.cs" />
     <Compile Include="service\impl\EmployeeServiceImpl.cs" />
+    <Compile Include="service\impl\EquipmentServiceImpl.cs" />
     <Compile Include="update.aspx.cs">
       <DependentUpon>update.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -189,12 +201,68 @@
     <Compile Include="update.aspx.designer.cs">
       <DependentUpon>update.aspx</DependentUpon>
     </Compile>
+    <Compile Include="view\DepartmentAdd.aspx.cs">
+      <DependentUpon>DepartmentAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\DepartmentAdd.aspx.designer.cs">
+      <DependentUpon>DepartmentAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="view\DepartmentIndex.aspx.cs">
+      <DependentUpon>DepartmentIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\DepartmentIndex.aspx.designer.cs">
+      <DependentUpon>DepartmentIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="view\DepartmentQuery.aspx.cs">
+      <DependentUpon>DepartmentQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\DepartmentQuery.aspx.designer.cs">
+      <DependentUpon>DepartmentQuery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="view\DepartmentQueryInfo.aspx.cs">
+      <DependentUpon>DepartmentQueryInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\DepartmentQueryInfo.aspx.designer.cs">
+      <DependentUpon>DepartmentQueryInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="view\DepartmentUpdate.aspx.cs">
+      <DependentUpon>DepartmentUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\DepartmentUpdate.aspx.designer.cs">
+      <DependentUpon>DepartmentUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="view\EmployeeAdd.aspx.cs">
+      <DependentUpon>EmployeeAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\EmployeeAdd.aspx.designer.cs">
+      <DependentUpon>EmployeeAdd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="view\EmployeeIndex.aspx.cs">
       <DependentUpon>EmployeeIndex.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="view\EmployeeIndex.aspx.designer.cs">
       <DependentUpon>EmployeeIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="view\EmployeeQuery.aspx.cs">
+      <DependentUpon>EmployeeQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\EmployeeQuery.aspx.designer.cs">
+      <DependentUpon>EmployeeQuery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="view\EmployeeQueryInfo.aspx.cs">
+      <DependentUpon>EmployeeQueryInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\EmployeeQueryInfo.aspx.designer.cs">
+      <DependentUpon>EmployeeQueryInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="view\EmployeeUpdate.aspx.cs">
       <DependentUpon>EmployeeUpdate.aspx</DependentUpon>
@@ -273,9 +341,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="view\department\" />
-    <Folder Include="view\employee\" />
-    <Folder Include="view\equiment\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

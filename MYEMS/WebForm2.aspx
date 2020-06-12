@@ -69,8 +69,6 @@
               %>
         </table>
         <asp:Button ID="Button1" runat="server" Text="首页" OnClick="Button1_Click" />
-
-
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="上一页" />
         <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="下一页" />
         <asp:Button ID="Button4" runat="server" Text="尾页" OnClick="Button4_Click" />

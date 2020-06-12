@@ -26,17 +26,12 @@
                 font-size: 3.5rem;
             }
         }
-        .auto-style1 {
-            left: 0;
-            right: 0;
-            top: 0;
-        }
-    </style>
+        </style>
     <link href="assets/css/dashboard.css" rel="stylesheet"/>
 </head>
 <body>
       <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"></a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#" style="left: 0px; top: 0px"></a>
         <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"/>
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
@@ -69,7 +64,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="DepartmentIndex.aspx">
                             <span data-feather="users"></span>
                             部门管理
                         </a>
@@ -83,11 +78,11 @@
                     <table class="table table-striped table-sm">
                         <tr>
                             <th><label for="exampleFormControlInput2" >ID</label></th>
-                            <td><input type="text" name="emp_id"  value="<%=emp.Emp_id%>" id="exampleFormControlInput2" /></td>
+                            <td><input type="text" name="emp_id"  value="<%=emp.Emp_id%>" id="exampleFormControlInput2" readonly="readonly" /></td>
                         </tr>
                         <tr>
                             <th><label for="exampleFormControlInput1">编号</label></th>
-                            <td> <input type="text" name="emp_no" value="<%=emp.Emp_no %>" id="exampleFormControlInput1"  /></td>
+                            <td> <input type="text" name="emp_no" value="<%=emp.Emp_no %>" id="exampleFormControlInput1"  readonly="readonly"/></td>
                         </tr>
                         <tr>
                             <th><label for="exampleFormControlInput3">姓名</label></th>
@@ -104,33 +99,33 @@
                         <tr>
                             <th><label>是否为管理员</label></th>
                             <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio"  id="defaultCheck1" name="manager" value="true" checked="checked"/>
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        是
-                                    </label>
-                                </div>
-                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio"  id="defaultCheck2" name="manager" value="false" checked="<%=checkManager(emp.Emp_is_manager.ToString())%>"/>
-                                    <label class="form-check-label" for="defaultCheck2">
-                                        否
-                                    </label>
-                                </div>
+                                <select name="emp_manager" id="emp_manager">
+                                    <option value="<%=emp.Emp_is_manager%>"><%=emp.Emp_is_manager%></option>
+                                    <option value="False">False</option>
+                                    <option value="True">True</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label>部门编号</label></th>
+                             <td>
+                                <select name="emp_dept" id="emp_dept">
+                                    <option value="<%=emp.Emp_dept%>"><%=(departmentService.selectDepartmentByNo(emp.Emp_dept)).Dept_name%></option>
+                                    <%
+                                        for(int i = 0; i < depts.Count; i++)
+                                        {
+                                            %>
+                                     <option value="<%=depts[i].Dept_no %>"><%=depts[i].Dept_name %></option>
+                                    <%
+                                        }
+                                        %>
+                                </select>
                             </td>
                         </tr>
                     </table>
-         
-                        <%
-                            string checkManager(string b)
-                            {
-                                if (b == "True")
-                                    return "checked";
-                                else
-                                    return "unchecked";
-                            }
-                            %>
-                    <%=checkManager(emp.Emp_is_manager.ToString()) %>
+                    <asp:Button ID="Button1" runat="server" Text="修改" OnClick="Button1_Click" />
                </form>
+             
               <p style="color:red"><%=msg%></p>
     </main>
     </div>

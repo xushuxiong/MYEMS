@@ -9,17 +9,17 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ObjectDataSource1" AllowPaging="True">
-            <Columns>
-                <asp:BoundField DataField="Emp_id" HeaderText="Emp_id" SortExpression="Emp_id" />
-                <asp:BoundField DataField="Emp_no" HeaderText="Emp_no" SortExpression="Emp_no" />
-                <asp:BoundField DataField="Emp_name" HeaderText="Emp_name" SortExpression="Emp_name" />
-                <asp:BoundField DataField="Emp_mobile" HeaderText="Emp_mobile" SortExpression="Emp_mobile" />
-                <asp:CheckBoxField DataField="Emp_is_manager" HeaderText="Emp_is_manager" SortExpression="Emp_is_manager" />
-                <asp:BoundField DataField="Emp_dept" HeaderText="Emp_dept" SortExpression="Emp_dept" />
-            </Columns>
-        </asp:GridView>
-        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="selectAllEmployee" TypeName="MYEMS.service.impl.EmployeeServiceImpl"></asp:ObjectDataSource>
+       //asp:Image 控件
+        <div>
+            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/lmage_4.jpeg" Width="150" Height="170"/>  
+        </div>
+
+
+        <div>
+            <asp:FileUpload ID="FileUpload1" runat="server" />
+            <asp:Label ID="lbl" runat="server" Text="Label"></asp:Label>
+            <asp:Button ID="Button1" runat="server" Text="上传" OnClick="Button1_Click" />
+        </div>
     </form>
 </body>
 </html>

@@ -29,7 +29,7 @@ namespace MYEMS.dao
                     dept.Dept_id = (int)dr["dept_id"];
                     dept.Dept_no = (string)dr["dept_no"];
                     dept.Dept_name = (string)dr["dept_name"];
-                    dept.Dept_manager = (string)dr["dept_manager"];
+                    dept.Dept_manager = (string)dr["dept_manager"].ToString();
                     depts.Add(dept);
                 }
                 dr.Close();
@@ -88,7 +88,7 @@ namespace MYEMS.dao
                     dept.Dept_id = (int)dr["dept_id"];
                     dept.Dept_no = (string)dr["dept_no"];
                     dept.Dept_name = (string)dr["dept_name"];
-                    dept.Dept_manager = (string)dr["dept_manager"];
+                    dept.Dept_manager = (string)dr["dept_manager"].ToString();
                 }
                 return dept;
             }
@@ -102,9 +102,17 @@ namespace MYEMS.dao
             {
                 cn.ConnectionString = str;
                 cn.Open();
-                string sqlstr = string.Format("delete from [department] where dept_no='{0}'", dept_no);
-                SqlCommand cmd = new SqlCommand(sqlstr, cn);
-                int count = cmd.ExecuteNonQuery();
+                int count = 0;
+                try
+                {
+                    string sqlstr = string.Format("delete from [department] where dept_no='{0}'", dept_no);
+                    SqlCommand cmd = new SqlCommand(sqlstr, cn);
+                    count = cmd.ExecuteNonQuery();
+                }catch(Exception e)
+                {
+                    return -2;
+                }
+               
                 return count;
             }
         }
@@ -132,7 +140,7 @@ namespace MYEMS.dao
             {
                 cn.ConnectionString = str;
                 cn.Open();
-                string sql = string.Format("SELECT * FROM [department] where dept_no='{0}'", dept_name);
+                string sql = string.Format("SELECT * FROM [department] where dept_name=N'{0}'", dept_name);
                 SqlCommand cmd = new SqlCommand(sql, cn);
                 SqlDataReader dr = cmd.ExecuteReader();
                 List<Department> depts = new List<Department>();
@@ -143,7 +151,7 @@ namespace MYEMS.dao
                     dept.Dept_id = (int)dr["dept_id"];
                     dept.Dept_no = (string)dr["dept_no"];
                     dept.Dept_name = (string)dr["dept_name"];
-                    dept.Dept_manager = (string)dr["dept_manager"];
+                    dept.Dept_manager = (string)dr["dept_manager"].ToString();
                     depts.Add(dept);
                 }
                 return depts;
@@ -163,13 +171,13 @@ namespace MYEMS.dao
                 SqlDataReader dr = cmd.ExecuteReader();
                 List<Department> depts = new List<Department>();
 
-                if (dr.Read())
+                while (dr.Read())
                 {
                     Department dept = new Department();
                     dept.Dept_id = (int)dr["dept_id"];
                     dept.Dept_no = (string)dr["dept_no"];
                     dept.Dept_name = (string)dr["dept_name"];
-                    dept.Dept_manager = (string)dr["dept_manager"];
+                    dept.Dept_manager = (string)dr["dept_manager"].ToString();
                     depts.Add(dept);
                 }
                 return depts;
@@ -195,7 +203,7 @@ namespace MYEMS.dao
                     dept.Dept_id = (int)dr["dept_id"];
                     dept.Dept_no = (string)dr["dept_no"];
                     dept.Dept_name = (string)dr["dept_name"];
-                    dept.Dept_manager = (string)dr["dept_manager"];
+                    dept.Dept_manager = (string)dr["dept_manager"].ToString();
                     depts.Add(dept);
                 }
                 dr.Close();

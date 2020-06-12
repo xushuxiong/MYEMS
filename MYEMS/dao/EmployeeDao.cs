@@ -130,13 +130,64 @@ namespace MYEMS.dao
         /**
          * 根据员工名字查询员工信息
          */ 
-         public List<Employee> selectEmployeeByName(String emp_name)
+         public List<Employee> selectEmployeeByName(string emp_name)
         {
             using (SqlConnection cn = new SqlConnection())
             {
                 cn.ConnectionString = str;
                 cn.Open();
-                string sql = string.Format("SELECT * FROM [employee] where emp_name='{0}'", emp_name);
+                string sql = string.Format("SELECT * FROM [employee] where emp_name=N'{0}'", emp_name);
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                List<Employee> emps = new List<Employee>();
+                while (dr.Read())
+                {
+                    Employee emp = new Employee(); ;
+                    emp.Emp_id = (int)dr["emp_id"];
+                    emp.Emp_no = (string)dr["emp_no"];
+                    emp.Emp_name = (string)dr["emp_name"];
+                    emp.Emp_pwd = (string)dr["emp_pwd"];
+                    emp.Emp_mobile = (string)dr["emp_mobile"];
+                    emp.Emp_is_manager = (bool)dr["emp_is_manager"];
+                    emp.Emp_dept = (string)dr["emp_dept"];
+                    emps.Add(emp);
+                }
+                return emps;
+            }
+        }
+        public List<Employee> selectEmployeeByMobile(String emp_mobile)
+        {
+            using (SqlConnection cn = new SqlConnection())
+            {
+                cn.ConnectionString = str;
+                cn.Open();
+                string sql = string.Format("SELECT * FROM [employee] where emp_mobile='{0}'", emp_mobile);
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                List<Employee> emps = new List<Employee>();
+                while (dr.Read())
+                {
+                    Employee emp = new Employee(); ;
+                    emp.Emp_id = (int)dr["emp_id"];
+                    emp.Emp_no = (string)dr["emp_no"];
+                    emp.Emp_name = (string)dr["emp_name"];
+                    emp.Emp_pwd = (string)dr["emp_pwd"];
+                    emp.Emp_mobile = (string)dr["emp_mobile"];
+                    emp.Emp_is_manager = (bool)dr["emp_is_manager"];
+                    emp.Emp_dept = (string)dr["emp_dept"];
+                    emps.Add(emp);
+                }
+                return emps;
+            }
+        }
+
+        public List<Employee> selectEmployeeByManager(bool emp_manager)
+        {
+            using (SqlConnection cn = new SqlConnection())
+            {
+                cn.ConnectionString = str;
+                cn.Open();
+                string sql = string.Format("SELECT * FROM [employee] where emp_is_manager='{0}'", emp_manager);
                 SqlCommand cmd = new SqlCommand(sql, cn);
                 SqlDataReader dr = cmd.ExecuteReader();
                 List<Employee> emps = new List<Employee>();
@@ -157,7 +208,7 @@ namespace MYEMS.dao
         }
         /**
          * 根据部门编号查询所有
-         */ 
+         */
         public List<Employee> selectEmployeeBydept(string dept_no)
         {
             using (SqlConnection cn = new SqlConnection())
@@ -220,9 +271,16 @@ namespace MYEMS.dao
             {
                 cn.ConnectionString = str;
                 cn.Open();
-                string sqlstr = string.Format("delete from [employee] where emp_no='{0}'",emp_no);
-                SqlCommand cmd = new SqlCommand(sqlstr, cn);
-                int count=cmd.ExecuteNonQuery();
+                int count = 0;
+                try
+                {
+                    string sqlstr = string.Format("delete from [employee] where emp_no='{0}'",emp_no);
+                    SqlCommand cmd = new SqlCommand(sqlstr, cn);
+                    count=cmd.ExecuteNonQuery();                  
+                }catch(Exception e)
+                {
+                    return -2;
+                }
                 return count;
             }
         }

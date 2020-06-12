@@ -25,6 +25,13 @@ namespace MYEMS.entity
             this.dept_manager = dept_manager;
         }
 
+        public Department(string dept_no, string dept_name, string dept_manager)
+        {
+            this.dept_no = dept_no;
+            this.dept_name = dept_name;
+            this.dept_manager = dept_manager;
+        }
+
         public override string ToString()
         {
             return this.dept_id+" "+this.dept_no+" "+this.dept_name+" "+this.dept_manager;

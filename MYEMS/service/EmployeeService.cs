@@ -18,6 +18,8 @@ namespace MYEMS.service
         List<Employee> selectEmployeeByDept(string dept_no);
         Employee login_check(string emp_name, string emp_pwd);
         List<Employee> selectEmployeeByPage(int currentPage, int pageSize);
+        List<Employee> selectEmployeeByMobile(string emp_mobile);
+        List<Employee> selectEmployeeByManager(bool emp_manager);
         int getTotalCount();
     }
 }

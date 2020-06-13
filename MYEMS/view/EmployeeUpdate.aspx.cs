@@ -15,20 +15,36 @@ namespace MYEMS.view
         EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
         public Employee emp = new Employee();
         public string msg;
-        public List<Department> depts;
+        public List<Department> depts = new List<Department>();
         public DepartmentServiceImpl departmentService = new DepartmentServiceImpl();
         protected void Page_Load(object sender, EventArgs e)
         {
-            emp_no = (string)Request["emp_no"];
-            if (emp_no != null)
+            string username = (string)Session["username"];
+            if (username != null)
             {
-                emp = employeeService.selectEmployeeByNo(emp_no);
-                depts = departmentService.selectAllDepartment();
+                bool b = (bool)Session["manager"];
+                if (!b)
+                {
+                    Button1.Enabled = false;
+                    msg = "您并没有执行该操作的权限！";
+                }
+                emp_no = (string)Request["emp_no"];
+                if (emp_no != null)
+                {
+                    emp = employeeService.selectEmployeeByNo(emp_no);
+                    depts = departmentService.selectAllDepartment();
+                }
+                else
+                {
+                    msg = "无法直接访问该页面！";
+                    Button1.Enabled = false;
+                }  
             }
             else
             {
-                msg = "无法直接访问该页面！";
+                Response.Redirect("login.aspx");
             }
+            
         }
 
         protected void Button1_Click(object sender, EventArgs e)

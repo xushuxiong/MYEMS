@@ -22,20 +22,20 @@ namespace MYEMS
                  Response.Write(equs[i].ToString()+"<br>");
              }
              Equipment equ = new Equipment("201927", "sc00126", "Images\me.jpg", 23.4, DateTime.Now, "实验室三楼", "201824","A4纸");
-             equipmentDao.updateEquipmentByNo(equ);
-            date = DateTime.Now.ToString();*/
+             equipmentDao.updateEquipmentByNo(equ);*/
+            date = new DateTime(2019,08,21).ToString();
             /*List<Equipment>equs=equipmentDao.selectEquipmentByEmpName("许树雄");
             for (int i = 0; i < equs.Count; i++)
             {
                 Response.Write(equs[i].ToString() + "<br>");
             }
             //Response.Write(equ.ToString());*/
-            EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+           /* EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
             List<Employee> emps= employeeService.selectEmplyeeByName("许树雄");
             for (int i = 0; i < emps.Count; i++)
             {
                 Response.Write(emps[i].ToString() + "<br>");
-            }
+            }*/
         }
     }
 }

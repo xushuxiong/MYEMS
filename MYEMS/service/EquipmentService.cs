@@ -21,7 +21,8 @@ namespace MYEMS.service
         List<Equipment> selectEquipmentByPosition(string position);
         List<Equipment> selectEquipmentByDeptName(string dept_name);
         List<Equipment> selectEquipmentByEmpName(string emp_name);
-
+        List<Equipment> selectEquipmentByPrice(double emp_price);
+        List<Equipment> selectEquipmentBySpecification(string equ_specification);
 
     }
 }

@@ -17,7 +17,22 @@ namespace MYEMS.view
         public string error;
         protected void Page_Load(object sender, EventArgs e)
         {
-            emps = employeeService.selectAllEmployee();
+            string username=(string)Session["username"];
+            if (username != null)
+            {
+                bool b = (bool)Session["manager"];
+                if (!b)
+                {
+                    Button1.Enabled = false;
+                    error = "您并没有访问该页面的权限！";
+                }
+                emps = employeeService.selectAllEmployee();
+            }
+            else
+            {
+                Response.Redirect("login.aspx");
+            }
+            
         }
 
         protected void Button1_Click(object sender, EventArgs e)

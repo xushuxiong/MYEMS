@@ -28,7 +28,7 @@
 <body class="text-center">
     
     <form id="form1" runat="server"  class="form-signin">
-        <h1 class="h3 mb-3 font-weight-normal">Baer设备管理系统</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Bear设备管理系统</h1>
         <img class="mb-4" src="assets/brand/equiment.gif" alt="" width="72" height="72"/>
         <h3 class="h4 mb-4 font-weight-normal">请登录</h3>
         <label for="username" class="sr-only">用户名</label>

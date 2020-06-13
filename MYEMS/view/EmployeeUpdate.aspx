@@ -30,15 +30,6 @@
     <link href="assets/css/dashboard.css" rel="stylesheet"/>
 </head>
 <body>
-      <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#" style="left: 0px; top: 0px"></a>
-        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"/>
-        <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">Sign out</a>
-            </li>
-        </ul>
-    </nav>
 
 <div class="container-fluid">
     <div class="row" >
@@ -46,7 +37,7 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
+                        <a class="nav-link " href="index.aspx">
                             <span data-feather="home"></span>
                             主页 <span class="sr-only">(current)</span>
                         </a>
@@ -58,7 +49,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="EquipmentIndex.aspx">
                             <span data-feather="shopping-cart"></span>
                             设备管理
                         </a>
@@ -94,7 +85,7 @@
                         </tr>
                         <tr>
                             <th><label for="exampleFormControlInput5">密码</label></th>
-                            <td><input type="text" name="emp_pwd" value="<%=emp.Emp_pwd %>" id="exampleFormControlInput5" /></td>
+                            <td><input type="password" name="emp_pwd" value="<%=emp.Emp_pwd %>" id="exampleFormControlInput5" /></td>
                         </tr>
                         <tr>
                             <th><label>是否为管理员</label></th>
@@ -110,7 +101,7 @@
                             <th><label>部门编号</label></th>
                              <td>
                                 <select name="emp_dept" id="emp_dept">
-                                    <option value="<%=emp.Emp_dept%>"><%=(departmentService.selectDepartmentByNo(emp.Emp_dept)).Dept_name%></option>
+                                    <option value="<%=emp.Emp_dept%>"><%=(emp.Emp_dept)%></option>
                                     <%
                                         for(int i = 0; i < depts.Count; i++)
                                         {

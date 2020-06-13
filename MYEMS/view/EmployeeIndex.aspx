@@ -30,15 +30,7 @@
     <link href="assets/css/dashboard.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"></a>
-        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"/>
-        <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">Sign out</a>
-            </li>
-        </ul>
-    </nav>
+    
 
 <div class="container-fluid">
     <div class="row" >
@@ -46,7 +38,7 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
+                        <a class="nav-link" href="index.aspx">
                             <span data-feather="home"></span>
                             主页 <span class="sr-only">(current)</span>
                         </a>
@@ -58,7 +50,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="EquipmentIndex.aspx">
                             <span data-feather="shopping-cart"></span>
                             设备管理
                         </a>
@@ -85,7 +77,6 @@
                 <th>ID</th>
                 <th>编号</th>
                 <th>姓名</th>
-                <th>密码</th>
                 <th>所在部门</th>
                 <th>电话号码</th>
                 <th>是否为管理员</th>
@@ -101,7 +92,6 @@
                 <td><%=page1.PT1[i].Emp_id %></td>
                 <td><%=page1.PT1[i].Emp_no %></td>
                 <td><%=page1.PT1[i].Emp_name %></td>
-                <td><%=page1.PT1[i].Emp_pwd %></td>
                 <td><%=(departmentService.selectDepartmentByNo(page1.PT1[i].Emp_dept)).Dept_name%></td>
                 <td><%=page1.PT1[i].Emp_mobile %></td>
                 <td><%=page1.PT1[i].Emp_is_manager %></td>

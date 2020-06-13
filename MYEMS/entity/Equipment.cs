@@ -12,7 +12,7 @@ namespace MYEMS.entity
         private string equ_specification;
         private string equ_picture;
         private double equ_price;
-        private DateTime equ_day;
+        private DateTime equ_day;    
         private string equ_position;
         private string equ_emp;
         private string equ_name;
@@ -57,6 +57,29 @@ namespace MYEMS.entity
             this.equ_picture = equ_picture;
             this.equ_price = equ_price;
             this.equ_day = equ_day;
+            this.equ_position = equ_position;
+            this.equ_emp = equ_emp;
+            this.equ_name = equ_name;
+        }
+
+        public Equipment(int equ_id, string equ_no, string equ_specification, string equ_picture, double equ_price, string equ_position, string equ_emp, string equ_name)
+        {
+            this.equ_id = equ_id;
+            this.equ_no = equ_no;
+            this.equ_specification = equ_specification;
+            this.equ_picture = equ_picture;
+            this.equ_price = equ_price;
+            this.equ_position = equ_position;
+            this.equ_emp = equ_emp;
+            this.equ_name = equ_name;
+        }
+
+        public Equipment(int equ_id, string equ_no, string equ_specification, double equ_price, string equ_position, string equ_emp, string equ_name)
+        {
+            this.equ_id = equ_id;
+            this.equ_no = equ_no;
+            this.equ_specification = equ_specification;
+            this.equ_price = equ_price;
             this.equ_position = equ_position;
             this.equ_emp = equ_emp;
             this.equ_name = equ_name;

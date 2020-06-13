@@ -30,9 +30,9 @@ namespace MYEMS.view
             }
             else
             {
-                Session.Add("useranme", emp.Emp_name);
+                Session.Add("username", emp.Emp_name);
                 Session.Add("manager", emp.Emp_is_manager);
-                Response.Redirect("index.aspx");
+                Response.Redirect("Index.aspx");
             }
             
         }

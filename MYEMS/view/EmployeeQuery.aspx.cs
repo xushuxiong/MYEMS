@@ -16,7 +16,12 @@ namespace MYEMS.view
         public string error = null;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string username = (string)Session["username"];
+            if (username == null)
+            {
+                Response.Redirect("login.aspx");
+            }
+         
         }
 
         protected void Button1_Click(object sender, EventArgs e)

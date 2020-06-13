@@ -20,16 +20,30 @@ namespace MYEMS.view
         public static int current=1;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (page1 == null)
+            string username=(string)Session["username"];
+            if (username != null)
             {
-                page1 = new PageHelper<Employee>();
-                page1.PageSize = 3;
-                page1.TotalCount = employeeService.getTotalCount();
-                page1.TotalPage = page1.TotalCount % page1.PageSize == 0 ? page1.TotalCount / page1.PageSize : (page1.TotalCount / page1.PageSize) + 1;
-                page1.CurrentPage = 1;
-                List<Employee> emps = employeeService.selectEmployeeByPage(page1.CurrentPage, page1.PageSize);
-                page1.PT1 = emps;
+                bool b=(bool)Session["manager"];
+                if (!b)
+                {
+                    Button9.Enabled = false;
+                }
+                if (page1 == null)
+                {
+                    page1 = new PageHelper<Employee>();
+                    page1.PageSize = 3;
+                    page1.TotalCount = employeeService.getTotalCount();
+                    page1.TotalPage = page1.TotalCount % page1.PageSize == 0 ? page1.TotalCount / page1.PageSize : (page1.TotalCount / page1.PageSize) + 1;
+                    page1.CurrentPage = 1;
+                    List<Employee> emps = employeeService.selectEmployeeByPage(page1.CurrentPage, page1.PageSize);
+                    page1.PT1 = emps;
+                }
             }
+            else
+            {
+                Response.Redirect("login.aspx");
+            }
+            
         }
         protected void Button5_Click(object sender, EventArgs e)
         {
@@ -70,23 +84,32 @@ namespace MYEMS.view
 
         protected void Button9_Click(object sender, EventArgs e)
         {
-            string emp_no=Request["del_no"];
-            int count=employeeService.deleteEmployeeByNo(emp_no);
-             if (count == -1)
-             {
-                 error = "不存在该员工";
-             }else if (count == 0)
-             {
-                 error = "删除失败";
-             }else if (count == -2)
+            bool b=(bool)Session["manager"];
+            if (b)
             {
-                error = "该员工是某个部门主管，目前不可删除！";
+                string emp_no=Request["del_no"];
+                int count=employeeService.deleteEmployeeByNo(emp_no);
+                 if (count == -1)
+                 {
+                     error = "不存在该员工";
+                 }else if (count == 0)
+                 {
+                     error = "删除失败";
+                 }else if (count == -2)
+                {
+                    error = "该员工是某个部门主管，目前不可删除！";
+                }
+                 else
+                 {
+                     error = "删除成功";
+                    Response.Write(emp_no);
+                 }
             }
-             else
-             {
-                 error = "删除成功";
-                Response.Write(emp_no);
-             }
+            else
+            {
+                error = "您并没有执行该操作的权限";
+            }
+            
         }
     }
 }

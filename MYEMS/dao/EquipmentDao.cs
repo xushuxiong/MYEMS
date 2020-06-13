@@ -51,8 +51,8 @@ namespace MYEMS.dao
             {
                 cn.ConnectionString = str;
                 cn.Open();
-                string sql = string.Format("SELECT * FROM equipment ORDER BY emp_id OFFSET " + ((currentPage - 1) * pageSize) + " ROWS FETCH NEXT " + pageSize + " ROWS only");
-                SqlCommand cmd = new SqlCommand("SELECT * FROM [equipment]", cn);
+                string sql = string.Format("SELECT * FROM equipment ORDER BY equ_id OFFSET " + ((currentPage - 1) * pageSize) + " ROWS FETCH NEXT " + pageSize + " ROWS only");
+                SqlCommand cmd = new SqlCommand(sql, cn);
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -116,8 +116,8 @@ namespace MYEMS.dao
                 cn.ConnectionString = str;
                 cn.Open();
                 string sqlstr = string.Format("UPDATE [equipment] set equ_name=N'{0}'" +
-                    ",equ_picture=N'{1}',equ_position=N'{2}',equ_price='{3}',equ_day=N'{4}',equ_specification=N'{5}',equ_emp=N'{6}' where equ_no='{7}'"
-                    , equ.Equ_name,equ.Equ_picture,equ.Equ_position,equ.Equ_price,equ.Equ_day,equ.Equ_specification,equ.Equ_emp,equ.Equ_no);
+                    ",equ_picture=N'{1}',equ_position=N'{2}',equ_price='{3}',equ_specification=N'{4}',equ_emp=N'{5}' where equ_no='{6}'"
+                    , equ.Equ_name,equ.Equ_picture,equ.Equ_position,equ.Equ_price,equ.Equ_specification,equ.Equ_emp,equ.Equ_no);
                 SqlCommand cmd = new SqlCommand(sqlstr, cn);
                 int count = cmd.ExecuteNonQuery();
                 return count;
@@ -221,7 +221,7 @@ namespace MYEMS.dao
             {
                 cn.ConnectionString = str;
                 cn.Open();
-                string sqlstr = string.Format("select * from [equipment] where equ_position=N'{0}'",position);
+                string sqlstr = string.Format("select * from [equipment] where equ_position LIKE N'%{0}%'", position);
                 SqlCommand cmd = new SqlCommand(sqlstr, cn);
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
@@ -347,6 +347,68 @@ namespace MYEMS.dao
                     equ.Equ_specification = (string)dr["equ_specification"];
                     equ.Equ_emp = (string)dr["equ_emp"];
                     equ.Emp_name = (string)dr["my"];
+                    equs.Add(equ);
+                }
+                dr.Close();
+            }
+            return equs;
+        }
+        /**
+        * 根据价格获取设备信息
+        */
+        public List<Equipment> selectEquipmentByPrice(double equ_price)
+        {
+            List<Equipment> equs = new List<Equipment>();
+            using (SqlConnection cn = new SqlConnection())
+            {
+                cn.ConnectionString = str;
+                cn.Open();
+                string sqlstr = string.Format("SELECT * from [equipment] WHERE emp_price ="+equ_price);
+                SqlCommand cmd = new SqlCommand(sqlstr, cn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Equipment equ = new Equipment();
+                    equ.Equ_id = (int)dr["equ_id"];
+                    equ.Equ_no = (string)dr["equ_no"];
+                    equ.Equ_name = (string)dr["equ_name"];
+                    equ.Equ_picture = (string)dr["equ_picture"];
+                    equ.Equ_position = (string)dr["equ_position"];
+                    equ.Equ_price = (double)dr["equ_price"];
+                    equ.Equ_emp = (string)dr["equ_emp"];
+                    equ.Equ_day = (DateTime)dr["equ_day"];
+                    equ.Equ_specification = (string)dr["equ_specification"];
+                    equs.Add(equ);
+                }
+                dr.Close();
+            }
+            return equs;
+        }
+        /**
+        * 根据型号获取设备信息
+        */
+        public List<Equipment> selectEquipmentBySpecification(string equ_specification)
+        {
+            List<Equipment> equs = new List<Equipment>();
+            using (SqlConnection cn = new SqlConnection())
+            {
+                cn.ConnectionString = str;
+                cn.Open();
+                string sqlstr = string.Format("SELECT * from [equipment] WHERE equ_specification = '{0}'",equ_specification);
+                SqlCommand cmd = new SqlCommand(sqlstr, cn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Equipment equ = new Equipment();
+                    equ.Equ_id = (int)dr["equ_id"];
+                    equ.Equ_no = (string)dr["equ_no"];
+                    equ.Equ_name = (string)dr["equ_name"];
+                    equ.Equ_picture = (string)dr["equ_picture"];
+                    equ.Equ_position = (string)dr["equ_position"];
+                    equ.Equ_price = (double)dr["equ_price"];
+                    equ.Equ_day = (DateTime)dr["equ_day"];
+                    equ.Equ_emp = (string)dr["equ_emp"];
+                    equ.Equ_specification = (string)dr["equ_specification"];
                     equs.Add(equ);
                 }
                 dr.Close();

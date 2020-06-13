@@ -19,16 +19,30 @@ namespace MYEMS.view
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (page == null)
+            string username = (string)Session["username"];
+            if (username != null)
             {
-                page = new PageHelper<Department>();
-                page.PageSize = 3;
-                page.TotalCount = departmentService.getTotalCount();
-                page.TotalPage = page.TotalCount % page.PageSize == 0 ? page.TotalCount / page.PageSize : page.TotalCount / page.PageSize + 1;
-                page.CurrentPage = 1;
-                List<Department> depts = departmentService.selectDepartmentByPage(page.CurrentPage, page.PageSize);
-                page.PT1 = depts;
+                bool b = (bool)Session["manager"];
+                if (!b)
+                {
+                    Button9.Enabled = false;
+                }
+                if (page == null)
+                {
+                    page = new PageHelper<Department>();
+                    page.PageSize = 3;
+                    page.TotalCount = departmentService.getTotalCount();
+                    page.TotalPage = page.TotalCount % page.PageSize == 0 ? page.TotalCount / page.PageSize : page.TotalCount / page.PageSize + 1;
+                    page.CurrentPage = 1;
+                    List<Department> depts = departmentService.selectDepartmentByPage(page.CurrentPage, page.PageSize);
+                    page.PT1 = depts;
+                }
             }
+            else
+            {
+                Response.Redirect("login.aspx");
+            }
+           
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
@@ -66,24 +80,33 @@ namespace MYEMS.view
 
         protected void Button9_Click(object sender, EventArgs e)
         {
-            string dept_no = Request["del_no"];
-            int count = departmentService.deleteDepartmentByNo(dept_no);
-            if (count == -1)
+            bool b = (bool)Session["manager"];
+            if (b)
             {
-                error = "不存在该部门";
-            }
-            else if (count == 0)
-            {
-                error = "删除失败";
-            }
-            else if (count == -2)
-            {
-                error = "该部门还有员工，目前不可删除！";
+                string dept_no = Request["del_no"];
+                int count = departmentService.deleteDepartmentByNo(dept_no);
+                if (count == -1)
+                {
+                    error = "不存在该部门";
+                }
+                else if (count == 0)
+                {
+                    error = "删除失败";
+                }
+                else if (count == -2)
+                {
+                    error = "该部门还有员工，目前不可删除！";
+                }
+                else
+                {
+                    error = "删除成功";
+                }
             }
             else
             {
-                error = "删除成功";
+                error = "您并没有访问该操作的权限！";
             }
+            
         }
     }
 }

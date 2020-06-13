@@ -16,8 +16,19 @@ namespace MYEMS.view
         public EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["depts"] != null)
-                depts = (List<Department>)Session["depts"];
+            string username = (string)Session["username"];
+            if (username != null)
+            {
+                if (Session["depts"] != null)
+                {
+                    depts = (List<Department>)Session["depts"];
+                    Session.Remove("depts");
+                }
+            }
+            else
+            {
+                Response.Redirect("login.aspx");
+            }                
         }
     }
 }

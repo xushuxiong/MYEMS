@@ -104,5 +104,16 @@ namespace MYEMS.service.impl
         {
             return equipmentDao.selectEquipmentByEmpName(emp_name);
         }
+        /**
+         * 根据价格查询设备信息
+         */
+        public List<Equipment> selectEquipmentByPrice(double emp_price)
+        {
+            return equipmentDao.selectEquipmentByPrice(emp_price);
+        }
+        public List<Equipment> selectEquipmentBySpecification(string equ_specification)
+        {
+            return equipmentDao.selectEquipmentBySpecification(equ_specification);
+        }
     }
 }

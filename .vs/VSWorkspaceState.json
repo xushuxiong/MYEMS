@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MYEMS",
+    "\\MYEMS\\entity"
   ],
+  "SelectedNode": "\\MYEMS\\view",
   "PreviewInSolutionExplorer": false
 }

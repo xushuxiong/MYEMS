@@ -17,8 +17,19 @@ namespace MYEMS.view
         public string error;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["emps"] != null)
+            string username = (string)Session["username"];
+            if (username != null)
+            {
+                if (Session["emps"] != null)
+            {
                 emps = (List<Employee>)Session["emps"];
+                Session.Remove("emps");
+            }
+            }
+            else
+            {
+                Response.Redirect("login.aspx");
+            } 
         }
     }
 }
